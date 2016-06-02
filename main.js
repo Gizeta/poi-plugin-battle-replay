@@ -146,7 +146,7 @@ $(document).ready(() => {
     });
     
     $('#paste').click(() => {
-        API = JSON.parse(clipboard.readText());
+        API = wrapper(JSON.parse(clipboard.readText()));
         loadCode(true);
         PAUSE = true;
     });
