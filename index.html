@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Battle Replay</title>
+    <base href="./kancolle-replay/" />
+    <link rel="stylesheet" id="bootstrap-css" href="">
+    <link rel="stylesheet" href="../main.css">
+    <script src="../env-loader.js"></script>
+    
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="kcSHIPDATA.js"></script>
+    <script src="kcEQDATA.js"></script>
+    <script src="kcEDGES.js"></script>
+    <script src="kcMAPDATA.js"></script>
+    <script src="shared.js"></script>
+    <script src="pixi.js"></script>
+    <script src="howler.min.js"></script>
+</head>
+<body>
+    <main>
+        <div class="panel panel-default">
+            <div class="panel-heading __">Options</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <select id="battles" type="select" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="btn-group">
+                                <button id="play" style="width:100%" type="button" class="btn btn-primary __">Play</button>
+                                <button id="reset" style="width:100%" type="button" class="btn btn-primary __">Restart</button>
+                                <button id="copy" style="width:100%" type="button" class="btn btn-primary __">Copy Data</button>
+                                <button id="paste" style="width:100%" type="button" class="btn btn-primary __">Paste Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading __">Battle Replay</div>
+            <div class="panel-body">
+                <div id="battlespace"></div>
+                <input type="hidden" id="code" />
+                <input type="hidden" id="error" />
+                <script src="playersound.js"></script>
+                <script src="player.js"></script>
+            </div>
+        </div>
+    </main>
+    <script src="../main.js"></script>
+</body>
+</html>

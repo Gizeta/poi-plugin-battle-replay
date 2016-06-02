@@ -1,0 +1,3 @@
+[submodule "kancolle-replay"]
+	path = kancolle-replay
+	url = git@github.com:KC3Kai/kancolle-replay.git

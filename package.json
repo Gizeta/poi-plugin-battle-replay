@@ -1,0 +1,27 @@
+{
+  "name": "poi-plugin-battle-replay",
+  "version": "1.0.0",
+  "description": "A plugin which shows battle replay for poi.",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gizeta/poi-plugin-battle-replay.git"
+  },
+  "author": {
+    "name":"Gizeta",
+    "link": "https://github.com/Gizeta"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Gizeta/poi-plugin-battle-replay/issues"
+  },
+  "homepage": "https://github.com/Gizeta/poi-plugin-battle-replay",
+  "poiPlugin": {
+    "title": "Battle Replay",
+    "description": "Show battle replay",
+    "icon": "fa/video-camera",
+    "priority": 12
+  }
+}
