@@ -1,9 +1,13 @@
+require('babel-register')
+require('coffee-react/register')
+
 require(`${ROOT}/views/env`);
 
+var async         = require('async');
 var path          = require('path-extra');
 var clipboard     = require('electron').clipboard;
-var AppData       = require('poi-plugin-battle-detail/lib/appdata');
-var PacketManager = require('poi-plugin-battle-detail/lib/packet-manager');
+var AppData       = require('../poi-plugin-battle-detail/lib/appdata.es');
+var PacketManager = require('../poi-plugin-battle-detail/lib/packet-manager.es');
 
 window.i18n = {};
 window.i18n.main = new(require('i18n-2'))({
@@ -30,7 +34,7 @@ window.__r = i18n_res.__.bind(i18n_res);
 
 document.title = __('Battle Replay');
 
-MAX_PACKET_NUMBER = 64;
+MAX_BATTLE_NUMBER = 64;
 
 var battle;
 var battleList = [];
@@ -106,30 +110,36 @@ function generateOptions() {
         var battle = battleList[i];
         if (selectedId == PacketManager.getId(battle)) selected = i;
         options.push(
-            $(`<option key="${i}" value="${i}">${PacketManager.getTime(battle)} ${PacketManager.getDesc(battle)}</option>`)
+            $(`<option key="${i}" value="${i}">${PacketManager.getTime(battle)} ${PacketManager.getMap(battle)}</option>`)
         );
     }
     $('select').html(options);
-    $("select").prop("selectedIndex", -1);
+    $("select").prop("selectedIndex", 0);
 }
 
 $ = jQuery;
 $(document).ready(() => {
     $('.__').each((idx, elem) => { $(elem).html(__($(elem).html())); });
     
-    var list = AppData.listPacket();
-    if (list && list.length > 0) {
-        var packets = [];
-        for (var i = list.length - 1; i >= 0; i--) {
-            fp = list[i];
-            var packet = AppData.loadPacketSync(fp);
-            if (packet) packets.push(packet);
-            if (packets.length >= MAX_PACKET_NUMBER) break;
+    AppData.listBattle().then((battleIds) => {
+        if (!battleIds) {
+            return;
         }
-        battleList = battleList.concat(packets).slice(0, MAX_PACKET_NUMBER);
-        battle = battleList[0];
-    }
-    generateOptions();
+        battleIds = battleIds.reverse().slice(0, MAX_BATTLE_NUMBER); // get only MAX_BATTLE_NUMBER most recent battles
+        battles = async.concatSeries(
+                battleIds, 
+                function(id, callback) {
+                    AppData.loadBattle(id).then((battle) => { 
+                        callback(null, [battle]); 
+                    });
+                }, 
+                function(err, results) {
+                    battleList = results;
+                    generateOptions();
+                }
+        );
+    });
+
     
     $('#play').click(() => {
         if (started)
