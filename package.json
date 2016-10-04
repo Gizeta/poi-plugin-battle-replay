@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hatsuyuki15/poi-plugin-battle-replay.git"
+    "url": "https://github.com/Gizeta/poi-plugin-battle-replay.git"
   },
   "author": {
     "name":"Gizeta",
@@ -16,9 +16,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hatsuyuki15/poi-plugin-battle-replay/issues"
+    "url": "https://github.com/Gizeta/poi-plugin-battle-replay/issues"
   },
-  "homepage": "https://github.com/hatsuyuki15/poi-plugin-battle-replay",
+  "homepage": "https://github.com/Gizeta/poi-plugin-battle-replay",
   "poiPlugin": {
     "title": "Battle Replay",
     "description": "Show battle replay",
