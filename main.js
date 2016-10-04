@@ -6,8 +6,8 @@ require(`${ROOT}/views/env`);
 var async         = require('async');
 var path          = require('path-extra');
 var clipboard     = require('electron').clipboard;
-var AppData       = require('../poi-plugin-battle-detail/lib/appdata.es');
-var PacketManager = require('../poi-plugin-battle-detail/lib/packet-manager.es');
+var AppData       = require('./plugin-battle-detail/lib/appdata.es');
+var PacketManager = require('./plugin-battle-detail/lib/packet-manager.es');
 
 window.i18n = {};
 window.i18n.main = new(require('i18n-2'))({
