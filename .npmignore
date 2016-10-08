@@ -1,0 +1,16 @@
+kancolle-replay/jquery-ui/
+kancolle-replay/reader/
+kancolle-replay/*.html
+kancolle-replay/*.css
+kancolle-replay/chosen*
+kancolle-replay/kcENEMYCOMP.js
+kancolle-replay/kcs*.js
+kancolle-replay/pixi.min.js
+kancolle-replay/ui.js
+kancolle-replay/URI.js
+kancolle-replay/*.map
+plugin-battle-detail/assets/
+plugin-battle-detail/lib/simulator2.coffee
+plugin-battle-detail/views/
+plugin-battle-detail/*.js
+plugin-battle-detail/*.html
