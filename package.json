@@ -4,10 +4,11 @@
   "description": "A plugin which shows battle replay for poi.",
   "main": "index.js",
   "dependencies": {
+    "async": "^2.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gizeta/poi-plugin-battle-replay.git"
+    "url": "https://github.com/Gizeta/poi-plugin-battle-replay.git"
   },
   "author": {
     "name":"Gizeta",

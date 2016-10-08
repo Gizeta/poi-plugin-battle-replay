@@ -1,3 +1,6 @@
 [submodule "kancolle-replay"]
 	path = kancolle-replay
-	url = git@github.com:KC3Kai/kancolle-replay.git
+	url = https://github.com/KC3Kai/kancolle-replay.git
+[submodule "plugin-battle-detail"]
+	path = plugin-battle-detail
+	url = https://github.com/poooi/plugin-battle-detail.git
