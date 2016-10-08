@@ -40,14 +40,10 @@ var battle;
 var battleList = [];
 
 function wrapper(data) {
-    if (!data.version) return data;
-    
     var obj = {};
-    obj.hq = "0";
-    obj.id = 0;
-    obj.time = data.time;
+    obj.time = data.time / 1000;
     obj.fleetnum = data.packet[0].api_dock_id;
-    obj.combined = data.fleet.type == 0 ? 0 : 1;
+    obj.combined = data.fleet.escort ? 1 : 0;
     obj.diff = 1;
     obj.world = data.map[0];
     obj.mapnum = data.map[1];
@@ -56,7 +52,7 @@ function wrapper(data) {
     obj.fleet2 = [];
     obj.fleet3 = [];
     obj.fleet4 = [];
-    var fleet = obj[`fleet${obj.fleetnum}`];
+    var fleet = obj.fleet1;
     for (var i = 0; i < data.fleet.main.length; i++) {
         var ship = data.fleet.main[i];
         if (ship == null) break;
@@ -68,7 +64,7 @@ function wrapper(data) {
             mst_id: ship.api_ship_id
         });
     }
-    if (obj.combined) {
+    if (data.fleet.escort) {
         var fleet = obj.fleet2;
         for (var i = 0; i < data.fleet.escort.length; i++) {
             var ship = data.fleet.escort[i];
@@ -82,20 +78,27 @@ function wrapper(data) {
             });
         }
     }
+    if (data.fleet.support) {
+        var fleet = obj.fleet3;
+        for (var i = 0; i < data.fleet.support.length; i++) {
+            var ship = data.fleet.support[i];
+            if (ship == null) break;
+            fleet.push({
+                equip: ship.poi_slot.map((item) => item ? item.api_slotitem_id : -1),
+                kyouka: ship.api_kyouka,
+                level: ship.api_lv,
+                morale: ship.api_cond,
+                mst_id: ship.api_ship_id
+            });
+        }
+    }
     
-    obj.support1 = 0;
-    obj.support2 = 0;
+    obj.support1 = 3;
+    obj.support2 = 3;
     
     obj.battles = [];
     obj.battles[0] = {
-        drop: -1,
-        enemyId: 0,
-        hq: "0",
-        id: 0,
-        node: 0,
-        rating: "X",
-        sortie_id: 0,
-        time: data.packet[0].poi_time,
+        time: data.packet[0].poi_time / 1000,
         yasen: data.packet[1] || {},
         data: data.packet[0]
     };
@@ -136,6 +139,10 @@ $(document).ready(() => {
                 function(err, results) {
                     battleList = results;
                     generateOptions();
+
+                    API = wrapper(battleList[0]);
+                    loadCode(true);
+                    PAUSE = true;
                 }
         );
     });
