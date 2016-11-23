@@ -1,13 +1,9 @@
-require('babel-register')
-require('coffee-react/register')
-
 require(`${ROOT}/views/env`);
 
 var async         = require('async');
 var path          = require('path-extra');
 var clipboard     = require('electron').clipboard;
-var AppData       = require('./plugin-battle-detail/lib/appdata.es');
-var PacketManager = require('./plugin-battle-detail/lib/packet-manager.es');
+var PacketManager = require('./packet');
 
 window.i18n = {};
 window.i18n.main = new(require('i18n-2'))({
@@ -124,7 +120,7 @@ $ = jQuery;
 $(document).ready(() => {
     $('.__').each((idx, elem) => { $(elem).html(__($(elem).html())); });
     
-    AppData.listBattle().then((battleIds) => {
+    PacketManager.listBattle().then((battleIds) => {
         if (!battleIds) {
             return;
         }
@@ -132,7 +128,7 @@ $(document).ready(() => {
         battles = async.concatSeries(
                 battleIds, 
                 function(id, callback) {
-                    AppData.loadBattle(id).then((battle) => { 
+                    PacketManager.loadBattle(id).then((battle) => { 
                         callback(null, [battle]); 
                     });
                 }, 
