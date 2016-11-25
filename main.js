@@ -35,10 +35,11 @@ MAX_BATTLE_NUMBER = 64;
 var battle;
 var battleList = [];
 
-function wrapper(data) {
+// https://github.com/poooi/lib-battle/blob/master/docs/packet-format-2.1.md
+function wrapper_v21(data) {
     var obj = {};
     obj.time = data.time / 1000;
-    obj.fleetnum = data.packet[0].api_dock_id;
+    obj.fleetnum = data.packet[0].api_deck_id || data.packet[0].api_dock_id;
     obj.combined = data.fleet.escort ? 1 : 0;
     obj.diff = 1;
     obj.world = data.map[0];
@@ -95,10 +96,14 @@ function wrapper(data) {
     obj.battles = [];
     obj.battles[0] = {
         time: data.packet[0].poi_time / 1000,
-        yasen: data.packet[1] || {},
+        yasen: (data.packet[1] && data.packet[1].api_hougeki) ? data.packet[1] : {},
         data: data.packet[0]
     };
     return obj;
+}
+
+function wrapper(data) {
+    return wrapper_v21(data);
 }
 
 function generateOptions() {
