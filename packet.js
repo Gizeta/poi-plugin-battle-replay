@@ -48,9 +48,11 @@ module.exports = {
 
     getMap: (battle) => {
         if (battle == null) return;
+        if (battle.type === 'Pratice') return 'Pratice';
+
         let map = battle.map;
         if (map instanceof Array && map.length > 0) {
-            return `${map[0]}-${map[1]} (${map[2]})`;
+            return `${map[0]}-${map[1]} (${battle.type === 'Boss' ? 'Boss' : map[2]})`;
         }
     },
 
