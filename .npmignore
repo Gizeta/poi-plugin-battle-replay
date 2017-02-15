@@ -8,6 +8,7 @@ kancolle-replay/kcs*.js
 kancolle-replay/pixi.min.js
 kancolle-replay/ui.js
 kancolle-replay/URI.js
+kancolle-replay/playertext.js
 kancolle-replay/*.map
 kancolle-replay/*.md
 .vscode
