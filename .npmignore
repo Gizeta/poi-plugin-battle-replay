@@ -10,3 +10,4 @@ kancolle-replay/ui.js
 kancolle-replay/URI.js
 kancolle-replay/*.map
 kancolle-replay/*.md
+.vscode
