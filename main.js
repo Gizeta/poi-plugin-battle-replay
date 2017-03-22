@@ -3,6 +3,7 @@ require(`${ROOT}/views/env`);
 var async         = require('async');
 var path          = require('path-extra');
 var clipboard     = require('electron').clipboard;
+var remote        = require('electron').remote;
 var PacketManager = require('./packet');
 
 window.i18n = {};
@@ -34,6 +35,23 @@ MAX_BATTLE_NUMBER = 64;
 
 var battle;
 var battleList = [];
+
+window.ipc.register("BattleReplay", {
+    showBattle: (packet, callback) => {
+        API = wrapper(packet);
+        loadCode(true);
+        PAUSE = false;
+
+        remote.getCurrentWindow().show();
+
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }
+});
+window.onbeforeunload = () => {
+    window.ipc.unregisterAll("BattleReplay");
+}
 
 // https://github.com/poooi/lib-battle/blob/master/docs/packet-format-2.1.md
 function wrapper_v21(data) {
