@@ -2,13 +2,13 @@ kancolle-replay/jquery-ui/
 kancolle-replay/reader/
 kancolle-replay/*.html
 kancolle-replay/*.css
+kancolle-replay/*.map
+kancolle-replay/battleplayer*
 kancolle-replay/chosen*
 kancolle-replay/kcENEMYCOMP.js
 kancolle-replay/kcs*.js
-kancolle-replay/pixi.min.js
+kancolle-replay/pixi.js
+kancolle-replay/playertext.js
 kancolle-replay/ui.js
 kancolle-replay/URI.js
-kancolle-replay/playertext.js
-kancolle-replay/*.map
-kancolle-replay/*.md
 .vscode
