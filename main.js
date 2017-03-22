@@ -197,3 +197,8 @@ $(document).ready(() => {
         PAUSE = true;
     });
 });
+
+remote.getCurrentWindow().addListener('hide', () => {
+    PAUSE = true;
+    SM.stopBGM();
+});
