@@ -1,6 +1,6 @@
 {
   "name": "poi-plugin-battle-replay",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A plugin which shows battle replay for poi.",
   "main": "index.js",
   "dependencies": {
