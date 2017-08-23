@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8">
     <title>Battle Replay</title>
-    <base href="http://kc3kai.github.io/kancolle-replay/" />
     <link rel="stylesheet" id="bootstrap-css" href="">
+    <link rel="stylesheet" href="main.css">
+    <script src="env-loader.js"></script>
 
-    <script>
-        //require('electron').remote.getCurrentWindow().openDevTools();
-    </script>
-    
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+
+    <base href="http://kc3kai.github.io/kancolle-replay/" />
     <script src="js/kcSHIPDATA.js"></script>
     <script src="js/kcEQDATA.js"></script>
     <script src="js/kcEDGES.js"></script>
@@ -18,13 +19,6 @@
     <script src="js/shared.js"></script>
     <script src="js/pixi.min.js"></script>
     <script src="js/howler.min.js"></script>
-
-    <script>
-        var stylesheet = document.createElement("link");
-        stylesheet.rel = "stylesheet";
-        stylesheet.href = `file://${__dirname}/main.css`;
-        document.head.appendChild(stylesheet);
-    </script>
 </head>
 <body>
     <main>
@@ -60,16 +54,12 @@
         </div>
     </main>
     <script>
-        var script = document.createElement("script");
-        script.src = `file://${__dirname}/env-loader.js`;
-        document.head.appendChild(script);
-
         script = document.createElement("script");
         script.src = `file://${__dirname}/main.js`;
         document.body.appendChild(script);
     </script>
     <script src="js/playersound.js"></script>
     <script src="js/playersound2.js"></script>
-    <script src="js/player.js" defer="defer"></script>
+    <script src="js/player.js"></script>
 </body>
 </html>
